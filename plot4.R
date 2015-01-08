@@ -1,23 +1,21 @@
+#!/usr/bin/env Rscript
 source("LoadData.R")
 
 plot4 <- function(data=NULL) {
     data <- LoadData()
    
-    png("plot4.png", width=400, height=400)
+    png("plot4.png", width=480, height=480)
 	par(mfrow=c(2,2))
 
 ##Plot1	
- 	hist(data$Global_active_power,
-		xlab="Global Active Power (kilowatts)",
-		ylab="", col="red")
+ 	plot(data$DateTime,data$Global_active_power,type="l", xlab="", ylab="Global Active Power")
 
 ##Plot2
-	plot(data$DateTime,data$Global_active_power,
-         ylab="Global Active Power (kilowatts)", xlab="")
+	plot(data$DateTime,data$Voltage, type="l", xlab="datetime", ylab="Voltage")
 
 ##Plot3
-	plot(data$DateTime,data$Sub_metering_1,col="black",
-         ylab="Energy sub metering", xlab="")
+	plot(data$DateTime,data$Sub_metering_1,type="l", col="black",
+         xlab="", ylab="Energy sub metering")
 	lines(data$DateTime, data$Sub_metering_2, col="red")
 	lines(data$DateTime, data$Sub_metering_3, col="blue")
 	legend("topright", col=c("black", "red", "blue"),
@@ -25,9 +23,8 @@ plot4 <- function(data=NULL) {
            lty=1)
 	
 ##Plot4
-	plot(data$DateTime, data$Global_reactive_power, type="n",
-         xlab="datetime", ylab="Global_reactive_power")
-    lines(data$DateTime, data$Global_reactive_power)
+	plot(data$DateTime,data$Global_reactive_power, type="l", xlab="datetime", ylab="Global_reactive_power")
+
 
     dev.off()
 }

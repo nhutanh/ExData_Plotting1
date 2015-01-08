@@ -1,12 +1,14 @@
+#!/usr/bin/env Rscript
+
 source("LoadData.R")
 
 plot3 <- function(data=NULL) {
     data <- LoadData()
     
-    png("plot3.png", width=400, height=400)
+    png("plot3.png", width=480, height=480)
     
     plot(data$DateTime,data$Sub_metering_1, col="black",
-         ylab="Energy sub metering", xlab="")
+         type="l", xlab="", ylab="Energy sub metering")
 	lines(data$DateTime, data$Sub_metering_2, col="red")
 	lines(data$DateTime, data$Sub_metering_3, col="blue")
 	legend("topright", col=c("black", "red", "blue"),
